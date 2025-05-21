@@ -1,6 +1,6 @@
 import { Counter } from "../counter/counter";
 
-export const RestaurantDish = ({ restaurant }) => {
+export const RestaurantMenu = ({ restaurant }) => {
   return (
     <div>
       <h3>Меню</h3>

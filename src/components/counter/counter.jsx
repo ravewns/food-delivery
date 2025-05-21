@@ -1,4 +1,6 @@
 import { useState } from "react";
+const MAX = 5;
+const MIN = 0;
 
 export const Counter = () => {
   const [count, setCount] = useState(0);
@@ -7,7 +9,7 @@ export const Counter = () => {
     <div>
       <button
         onClick={() => {
-          if (count > 0) setCount(count - 1);
+          if (count > MIN) setCount(count - 1);
         }}
       >
         -
@@ -17,7 +19,7 @@ export const Counter = () => {
 
       <button
         onClick={() => {
-          if (count < 5) setCount(count + 1);
+          if (count < MAX) setCount(count + 1);
         }}
       >
         +
