@@ -3,7 +3,7 @@ export const Layout = ({ children }) => {
     <div>
       <header>header</header>
       {children}
-      <footer>foouter</footer>
+      <footer>footer</footer>
     </div>
   );
 };

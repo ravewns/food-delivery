@@ -1,29 +1,39 @@
-import { useState } from "react";
+import {useState} from "react";
+
 const MAX = 5;
 const MIN = 0;
 
-export const Counter = () => {
-  const [count, setCount] = useState(0);
+export const Counter = ({value, onChange}) => {
+    const isControlled = value !== undefined && typeof onChange === "function";
+    const [internalCount, setInternalCount] = useState(0);
 
-  return (
-    <div>
-      <button
-        onClick={() => {
-          if (count > MIN) setCount(count - 1);
-        }}
-      >
-        -
-      </button>
+    const count = isControlled ? value : internalCount;
 
-      {count}
+    const setCount = (newCount) => {
+        if (isControlled) {
+            onChange(newCount);
+        } else {
+            setInternalCount(newCount);
+        }
+    };
 
-      <button
-        onClick={() => {
-          if (count < MAX) setCount(count + 1);
-        }}
-      >
-        +
-      </button>
-    </div>
-  );
+    const increment = () => {
+        if (count < MAX) {
+            setCount(count + 1);
+        }
+    };
+
+    const decrement = () => {
+        if (count > MIN) {
+            setCount(count - 1);
+        }
+    };
+
+    return (
+        <div>
+            <button onClick={decrement}>-</button>
+            {count}
+            <button onClick={increment}>+</button>
+        </div>
+    );
 };
