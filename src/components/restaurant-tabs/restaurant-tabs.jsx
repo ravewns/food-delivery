@@ -2,7 +2,10 @@ export const RestaurantTabs = ({restaurants, onSelect}) => {
     return (
         <div className="restaurants-list" style={{display: "flex", justifyContent: "space-evenly"}}>
             {restaurants.map((restaurant) => {
-               if (restaurant.name.length) return (
+                if (!restaurant.name.length) {
+                    return null;
+                }
+                return (
                     <div key={restaurant.id} className="restaurant">
                         <button
                             className="restaurant-name"

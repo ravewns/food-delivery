@@ -9,7 +9,11 @@ const INITIAL_STATE = {
 const SET_NAME_ACTION = "setName";
 const SET_TEXT_ACTION = "setText";
 const SET_RATING_ACTION = "setRating";
+const INCREMENT_RATING_ACTION = "incrementRating";
+const DECREMENT_RATING_ACTION = "decrementRating";
 const CLEAR_ACTION = "clear";
+const MAX_RATING = 5;
+const MIN_RATING = 0;
 
 const reducer = (state, {type, payload}) => {
     switch (type) {
@@ -23,10 +27,15 @@ const reducer = (state, {type, payload}) => {
                 ...state,
                 text: payload,
             };
-        case SET_RATING_ACTION:
+        case INCREMENT_RATING_ACTION:
             return {
                 ...state,
-                rating: payload,
+                rating: Math.min(state.rating + 1, MAX_RATING),
+            };
+        case DECREMENT_RATING_ACTION:
+            return {
+                ...state,
+                rating: Math.max(state.rating - 1, MIN_RATING),
             };
         case CLEAR_ACTION:
             return INITIAL_STATE;
@@ -50,6 +59,15 @@ export const useForm = () => {
         dispatch({type: SET_RATING_ACTION, payload: rating});
     };
 
+    const incrementRating = () => {
+        dispatch({type: INCREMENT_RATING_ACTION})
+    };
+
+    const decrementRating = () => {
+        dispatch({type: DECREMENT_RATING_ACTION})
+    };
+
+
     const clear = () => dispatch({type: CLEAR_ACTION});
 
     return {
@@ -57,6 +75,8 @@ export const useForm = () => {
         onNameChange,
         onTextChange,
         onRatingChange,
+        incrementRating,
+        decrementRating,
         clear,
     }
 }

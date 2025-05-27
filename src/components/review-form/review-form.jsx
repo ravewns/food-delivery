@@ -2,7 +2,7 @@ import {useForm} from "./use-form.js";
 import {Counter} from "../counter/counter.jsx";
 
 export const ReviewForm = () => {
-    const {form, onNameChange, onTextChange, clear, onRatingChange} = useForm()
+    const {form, onNameChange, onTextChange, clear, incrementRating, decrementRating} = useForm()
 
     const {name, text, rating} = form
 
@@ -22,7 +22,7 @@ export const ReviewForm = () => {
             </div>
             <div>
                 <span>Рейтинг</span>
-                <Counter value={rating} onChange={onRatingChange}/>
+                <Counter value={rating} decrement={decrementRating} increment={incrementRating}/>
             </div>
             <button onClick={clear}>Clear
             </button>
