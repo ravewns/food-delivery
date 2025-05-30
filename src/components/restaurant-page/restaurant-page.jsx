@@ -11,15 +11,6 @@ export const RestaurantPage = () => {
         <div>
             <RestaurantTabs restaurants={restaurants} onSelect={setSelectedId}/>
             <RestaurantBlock restaurant={selectedRestaurant}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
         </div>
     );
 
