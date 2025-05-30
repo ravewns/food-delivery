@@ -1,4 +1,10 @@
+import {useContext} from "react";
+import styles from "./restaurant-tabs.module.css";
+import clsx from "clsx";
+import {ThemeContext} from "../theme-context/index.jsx";
+
 export const RestaurantTabs = ({restaurants, onSelect}) => {
+    const {theme} = useContext(ThemeContext);
     return (
         <div className="restaurants-list" style={{display: "flex", justifyContent: "space-evenly"}}>
             {restaurants.map((restaurant) => {
@@ -8,18 +14,15 @@ export const RestaurantTabs = ({restaurants, onSelect}) => {
                 return (
                     <div key={restaurant.id} className="restaurant">
                         <button
-                            className="restaurant-name"
+                            className={clsx(
+                                styles.restaurantName,
+                                theme === 'light' && styles.light,
+                                theme === 'dark' && styles.dark
+                            )}
                             onClick={() => {
                                 onSelect(restaurant.id);
                             }}
-                            style={{
-                                color: "orange",
-                                cursor: "pointer",
-                                backgroundColor: "transparent",
-                                border: "none",
-                                fontSize: "22px"
-                            }}
-                        >
+                            >
                             {restaurant.name}
                         </button>
                     </div>

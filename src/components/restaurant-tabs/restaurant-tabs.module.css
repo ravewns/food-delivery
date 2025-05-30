@@ -1,0 +1,15 @@
+.restaurantName {
+    color: orange;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 22px;
+}
+
+.light {
+    color: orange;
+}
+
+.dark {
+    color: darkblue;
+}
