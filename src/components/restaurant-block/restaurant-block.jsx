@@ -9,7 +9,7 @@ export const RestaurantBlock = ({restaurant}) => {
     const {state} = useContext(AuthContext);
 
     return (
-        <div>
+        <div className="container">
             {restaurant.menu.length ? <RestaurantMenu restaurant={restaurant}/> : 'Онлайн меню отсутствует'}
             {restaurant.reviews.length ? <RestaurantReview restaurant={restaurant}/> : 'Отзывов нет'}
             {state.isAuth && <ReviewForm/>}

@@ -1,0 +1,11 @@
+.auth {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.authName {
+    font-size: 18px;
+    margin-left: 10px;
+    font-family: "Nunito Sans", sans-serif;
+}

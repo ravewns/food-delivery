@@ -1,5 +1,8 @@
 import {useForm} from "./use-form.js";
 import {Counter} from "../counter/counter.jsx";
+import {Button} from "../button/button.jsx";
+import {Input} from "../input/input.jsx";
+import styles from "./review-form.module.css";
 
 export const ReviewForm = () => {
     const {form, onNameChange, onTextChange, clear, incrementRating, decrementRating} = useForm()
@@ -8,24 +11,24 @@ export const ReviewForm = () => {
 
     return (
         <form onSubmit={(event) => event.preventDefault()}>
-            <div>
-                <span>Имя</span>
-                <input value={name} onChange={(event) => {
+            <div className={styles.reviewFormInput}>
+                <label className={styles.reviewFormName}>Имя</label>
+                <Input value={name} onChange={(event) => {
                     onNameChange(event.target.value)
                 }} type="text"/>
             </div>
-            <div>
-                <span>Текст</span>
-                <input value={text} onChange={(event) => {
+            <div className={styles.reviewFormInput}>
+                <label className={styles.reviewFormName}>Текст</label>
+                <Input value={text} onChange={(event) => {
                     onTextChange(event.target.value)
                 }} type="text"/>
             </div>
-            <div>
-                <span>Рейтинг</span>
-                <Counter value={rating} decrement={decrementRating} increment={incrementRating}/>
+            <div className={styles.reviewFormInput}>
+                <label className={styles.reviewFormName}>Рейтинг</label>
             </div>
-            <button onClick={clear}>Clear
-            </button>
+            <Counter value={rating} decrement={decrementRating} increment={incrementRating}/>
+            <Button className={styles.reviewFormButton} onClick={clear}>Сбросить
+            </Button>
         </form>
     )
 }

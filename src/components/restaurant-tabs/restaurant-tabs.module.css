@@ -1,15 +1,14 @@
 .restaurantName {
-    color: orange;
     cursor: pointer;
-    background-color: transparent;
     border: none;
     font-size: 22px;
+    border-radius: 30px;
 }
 
-.light {
-    color: orange;
-}
-
-.dark {
-    color: darkblue;
+.restaurantsList {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f3f3f3;
+    padding: 15px;
+    margin: 20px 0;
 }

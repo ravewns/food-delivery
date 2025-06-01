@@ -1,10 +1,12 @@
+import styles from './restaurant-review.module.css'
+
 export const RestaurantReview = ({restaurant}) => {
     return (
         <div>
-            <h3>Отзывы</h3>
-            <ul className="restaurant-reviews">
+            <h3 className={styles.restaurantTitle}>Отзывы</h3>
+            <ul className={styles.restaurantReviews}>
                 {restaurant.reviews.map((review) => (
-                    <li key={review.id} className="restaurant-review">
+                    <li key={review.id} className={styles.restaurantReview}>
                         {review.text}
                     </li>
                 ))}
