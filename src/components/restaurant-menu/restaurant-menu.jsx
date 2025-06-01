@@ -3,7 +3,7 @@ import {useContext} from "react";
 import {AuthContext} from "../auth-context/index.jsx";
 
 export const RestaurantMenu = ({ restaurant }) => {
-    const {isAuth} = useContext(AuthContext);
+    const {state} = useContext(AuthContext);
   return (
     <div>
       <h3>Меню</h3>
@@ -11,7 +11,7 @@ export const RestaurantMenu = ({ restaurant }) => {
         {restaurant.menu.map((dish) => (
           <li key={dish.id} className="restaurant-dish">
             {dish.name}
-              {isAuth && <MenuCounter />}
+              {state.isAuth && <MenuCounter />}
           </li>
         ))}
       </ul>

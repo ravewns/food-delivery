@@ -6,13 +6,13 @@ import {AuthContext} from "../auth-context/index.jsx";
 
 
 export const RestaurantBlock = ({restaurant}) => {
-    const {isAuth} = useContext(AuthContext);
+    const {state} = useContext(AuthContext);
 
     return (
         <div>
             {restaurant.menu.length ? <RestaurantMenu restaurant={restaurant}/> : 'Онлайн меню отсутствует'}
             {restaurant.reviews.length ? <RestaurantReview restaurant={restaurant}/> : 'Отзывов нет'}
-            {isAuth && <ReviewForm/>}
+            {state.isAuth && <ReviewForm/>}
         </div>
     );
 };

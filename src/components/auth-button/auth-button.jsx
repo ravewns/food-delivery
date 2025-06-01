@@ -2,10 +2,10 @@ import {useContext} from "react";
 import {AuthContext} from "../auth-context/index.jsx";
 
 export const AuthButton = () => {
-    const {isAuth, user, login, logout} = useContext(AuthContext);
+    const {state, login, logout} = useContext(AuthContext);
 
     const handleAuthClick = () => {
-        if (isAuth) {
+        if (state.isAuth) {
             logout();
         } else {
             login("Дмитрий");
@@ -14,8 +14,8 @@ export const AuthButton = () => {
 
     return (
         <>
-            <button onClick={handleAuthClick}>{isAuth ? 'Выйти' : 'Войти'}</button>
-            {isAuth && <div>{user}!</div>}
+            <button onClick={handleAuthClick}>{state.isAuth ? 'Выйти' : 'Войти'}</button>
+            {state.isAuth && <div>{state.user}</div>}
         </>
     )
 }
