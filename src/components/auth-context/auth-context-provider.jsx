@@ -1,28 +1,8 @@
 import {useReducer} from "react";
 import {AuthContext} from "./index.jsx";
+import {initialState, reducer} from "./auth-reducer.js";
 
 export const AuthContextProvider = ({children}) => {
-    const initialState = {
-        isAuth: false,
-        user: '',
-    };
-
-    function reducer(state, action) {
-        switch (action.type) {
-            case 'SET_AUTH':
-                return {
-                    ...state,
-                    isAuth: action.payload,
-                };
-            case 'SET_NAME':
-                return {
-                    ...state,
-                    user: action.payload,
-                };
-            default:
-                return state;
-        }
-    }
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
