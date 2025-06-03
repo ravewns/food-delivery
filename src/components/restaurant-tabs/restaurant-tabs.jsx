@@ -1,27 +1,26 @@
+import styles from "./restaurant-tabs.module.css";
+import clsx from "clsx";
+import {Button} from "../button/button.jsx";
+
 export const RestaurantTabs = ({restaurants, onSelect}) => {
     return (
-        <div className="restaurants-list" style={{display: "flex", justifyContent: "space-evenly"}}>
+        <div className={clsx(styles.restaurantsList)}>
             {restaurants.map((restaurant) => {
                 if (!restaurant.name.length) {
                     return null;
                 }
                 return (
                     <div key={restaurant.id} className="restaurant">
-                        <button
-                            className="restaurant-name"
+                        <Button
+                            className={clsx(
+                                styles.restaurantName,
+                            )}
                             onClick={() => {
                                 onSelect(restaurant.id);
                             }}
-                            style={{
-                                color: "orange",
-                                cursor: "pointer",
-                                backgroundColor: "transparent",
-                                border: "none",
-                                fontSize: "22px"
-                            }}
-                        >
+                            >
                             {restaurant.name}
-                        </button>
+                        </Button>
                     </div>
                 );
             })}

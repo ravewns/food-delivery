@@ -1,9 +1,11 @@
+import {Button} from "../button/button.jsx";
+
 export const Counter = ({ value, increment, decrement }) => {
     return (
         <div>
-            <button onClick={decrement}>-</button>
+            <Button onClick={decrement}>-</Button>
             {value}
-            <button onClick={increment}>+</button>
+            <Button onClick={increment}>+</Button>
         </div>
     );
 };

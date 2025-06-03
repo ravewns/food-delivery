@@ -16,8 +16,8 @@ export const ProgressBar = () => {
     }, []);
 
     return (
-        <div style={{position: 'fixed', top: 0, left: 0, width: '100%', height: '10px',}}>
-            <div style={{width: `${scrollY}%`, height: '100%', background: 'red'}}/>
+        <div style={{position: 'fixed', top: 0, left: 0, width: '100%', height: '7px',}}>
+            <div style={{width: `${scrollY}%`, height: '100%', background: '#0d5e5e'}}/>
         </div>
     );
 };

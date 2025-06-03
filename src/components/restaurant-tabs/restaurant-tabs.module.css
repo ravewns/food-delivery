@@ -1,0 +1,14 @@
+.restaurantName {
+    cursor: pointer;
+    border: none;
+    font-size: 22px;
+    border-radius: 30px;
+}
+
+.restaurantsList {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f3f3f3;
+    padding: 15px;
+    margin: 20px 0;
+}

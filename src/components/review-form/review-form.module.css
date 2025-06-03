@@ -1,0 +1,15 @@
+.reviewFormName {
+    font-size: 18px;
+    color: #3a454a;
+    font-family: "Nunito Sans", sans-serif;
+    width: 60px;
+}
+
+.reviewFormInput {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.reviewFormButton {
+    margin-top: 25px;
+}
