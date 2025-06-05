@@ -1,27 +1,16 @@
 import styles from "./restaurant-tabs.module.css";
 import clsx from "clsx";
-import {Button} from "../button/button.jsx";
+import {Tab} from "../restaurant-tab/restaurant-tab.jsx";
 
-export const RestaurantTabs = ({restaurants, onSelect}) => {
+export const RestaurantTabs = ({restaurantsIds, onSelect}) => {
     return (
         <div className={clsx(styles.restaurantsList)}>
-            {restaurants.map((restaurant) => {
-                if (!restaurant.name.length) {
+            {restaurantsIds.map((restaurantId) => {
+                if (!restaurantsIds.length) {
                     return null;
                 }
                 return (
-                    <div key={restaurant.id} className="restaurant">
-                        <Button
-                            className={clsx(
-                                styles.restaurantName,
-                            )}
-                            onClick={() => {
-                                onSelect(restaurant.id);
-                            }}
-                            >
-                            {restaurant.name}
-                        </Button>
-                    </div>
+                    <Tab key={restaurantId} restaurantId={restaurantId} onSelect={onSelect}/>
                 );
             })}
         </div>
