@@ -3,9 +3,12 @@ import {RestaurantReviews} from "../restaurant-reviews/restaurant-reviews.jsx";
 import {ReviewForm} from "../review-form/review-form.jsx";
 import {useContext} from "react";
 import {AuthContext} from "../auth-context/index.jsx";
+import {useSelector} from "react-redux";
+import {selectRestaurantById} from "../../redux/entities/restaurant/slice.js";
 
 
-export const RestaurantBlock = ({restaurant}) => {
+export const RestaurantBlock = ({selectedId}) => {
+    const restaurant = useSelector((state) => selectRestaurantById(state, selectedId))
     const {state} = useContext(AuthContext);
 
     return (

@@ -4,7 +4,7 @@ import styles from "../restaurant-tabs/restaurant-tabs.module.css";
 import {useSelector} from "react-redux";
 import {selectRestaurantById} from "../../redux/entities/restaurant/slice.js";
 
-export const Tab = ({restaurantId, onSelect}) => {
+export const RestaurantTab = ({restaurantId, onSelect}) => {
     const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId))
     return (
         <>
