@@ -1,17 +1,20 @@
 import {RestaurantMenu} from "../restaurant-menu/restaurant-menu";
-import {RestaurantReview} from "../restaurant-review/restaurant-review";
+import {RestaurantReviews} from "../restaurant-reviews/restaurant-reviews.jsx";
 import {ReviewForm} from "../review-form/review-form.jsx";
 import {useContext} from "react";
 import {AuthContext} from "../auth-context/index.jsx";
+import {useSelector} from "react-redux";
+import {selectRestaurantById} from "../../redux/entities/restaurant/slice.js";
 
 
-export const RestaurantBlock = ({restaurant}) => {
+export const RestaurantBlock = ({selectedId}) => {
+    const restaurant = useSelector((state) => selectRestaurantById(state, selectedId))
     const {state} = useContext(AuthContext);
 
     return (
         <div className="container">
             {restaurant.menu.length ? <RestaurantMenu restaurant={restaurant}/> : 'Онлайн меню отсутствует'}
-            {restaurant.reviews.length ? <RestaurantReview restaurant={restaurant}/> : 'Отзывов нет'}
+            {restaurant.reviews.length ? <RestaurantReviews restaurant={restaurant}/> : 'Отзывов нет'}
             {state.isAuth && <ReviewForm/>}
         </div>
     );

@@ -1,17 +1,18 @@
 import {useState} from "react";
-import {restaurants} from "../../../materials/mock";
 import {RestaurantTabs} from "../restaurant-tabs/restaurant-tabs";
 import {RestaurantBlock} from "../restaurant-block/restaurant-block";
+import {selectRestaurantIds} from "../../redux/entities/restaurant/slice.js";
+import {useSelector} from "react-redux";
 
 export const RestaurantPage = () => {
-    const [selectedId, setSelectedId] = useState(restaurants[0].id);
-    const selectedRestaurant = restaurants.find((restaurant) => restaurant.id === selectedId);
+    const restaurantsIds = useSelector(selectRestaurantIds);
+    const [selectedId, setSelectedId] = useState(restaurantsIds[0]);
 
     return (
         <div>
-            <RestaurantTabs restaurants={restaurants} onSelect={setSelectedId}/>
-            <RestaurantBlock restaurant={selectedRestaurant}/>
+            <RestaurantTabs restaurantsIds={restaurantsIds} onSelect={setSelectedId}/>
+            <RestaurantBlock selectedId={selectedId}/>
         </div>
-    );
+    )};
 
-};
+

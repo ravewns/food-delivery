@@ -1,16 +1,14 @@
-import styles from './restaurant-review.module.css'
+import styles from "../restaurant-reviews/restaurant-review.module.css";
+import {useSelector} from "react-redux";
+import {selectReviewById} from "../../redux/entities/review/slice.js";
 
-export const RestaurantReview = ({restaurant}) => {
+export const Review = ({reviewId}) => {
+    const review = useSelector((state) => selectReviewById(state, reviewId))
     return (
-        <div>
-            <h3 className={styles.restaurantTitle}>Отзывы</h3>
-            <ul className={styles.restaurantReviews}>
-                {restaurant.reviews.map((review) => (
-                    <li key={review.id} className={styles.restaurantReview}>
-                        {review.text}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-};
+        <>
+            <li key={review} className={styles.restaurantReview}>
+                {review.text}
+            </li>
+        </>
+    )
+}
