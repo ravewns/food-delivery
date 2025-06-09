@@ -1,13 +1,16 @@
-import { useState } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {addToCart, removeFromCart, selectItemAmountById} from "../../redux/entities/cart/slice.js";
+import {useCallback} from "react";
 
-export const useCount = ({ min = 0, max = 5 } = {}) => {
-    const [value, setValue] = useState(min);
+export const useCount = (restaurantId) => {
+    const dispatch = useDispatch();
+    const amount = useSelector((state) => selectItemAmountById(state, restaurantId));
 
-    const increment = () => setValue(Math.min(value + 1, max));
-    const decrement = () => setValue(Math.max(value - 1, min));
+    const increment = useCallback(() => dispatch(addToCart(restaurantId)), [dispatch, restaurantId]);
+    const decrement = useCallback(() => dispatch(removeFromCart(restaurantId)), [dispatch, restaurantId]);
 
     return {
-        value,
+        value: amount,
         increment,
         decrement,
     };
