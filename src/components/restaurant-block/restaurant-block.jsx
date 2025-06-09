@@ -13,6 +13,7 @@ export const RestaurantBlock = ({selectedId}) => {
 
     return (
         <div className="container">
+            <h1>{restaurant.name}</h1>
             {restaurant.menu.length ? <RestaurantMenu restaurant={restaurant}/> : 'Онлайн меню отсутствует'}
             {restaurant.reviews.length ? <RestaurantReviews restaurant={restaurant}/> : 'Отзывов нет'}
             {state.isAuth && <ReviewForm/>}
