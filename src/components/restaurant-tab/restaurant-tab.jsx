@@ -1,24 +1,16 @@
-import {Button} from "../button/button.jsx";
-import clsx from "clsx";
 import styles from "../restaurant-tabs/restaurant-tabs.module.css";
 import {useSelector} from "react-redux";
 import {selectRestaurantById} from "../../redux/entities/restaurant/slice.js";
+import {Link} from "react-router";
 
-export const RestaurantTab = ({restaurantId, onSelect}) => {
+export const RestaurantTab = ({restaurantId}) => {
     const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId))
     return (
         <>
             <div key={restaurant.id} className="restaurant">
-                <Button
-                    className={clsx(
-                        styles.restaurantName,
-                    )}
-                    onClick={() => {
-                        onSelect(restaurant.id);
-                    }}
-                >
+                <Link to={restaurant.id} className={styles.restaurantName}>
                     {restaurant.name}
-                </Button>
+                </Link>
             </div>
         </>
     )
