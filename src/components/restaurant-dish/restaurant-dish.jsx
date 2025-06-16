@@ -12,7 +12,7 @@ export const Dish = ({dishId, addButton}) => {
     return (
         <>
             <ul className={styles.restaurantMenu}>
-                    <Link to={'/dish/' + dishId} key={dish} className={styles.restaurantDish}>
+                    <Link to={'/dish/' + dishId} className={styles.restaurantDish}>
                         {dish.name}
                         {state.isAuth && addButton && <MenuCounter restaurantId={dishId}/>}
                     </Link>

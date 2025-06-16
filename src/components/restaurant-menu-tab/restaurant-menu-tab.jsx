@@ -6,7 +6,6 @@ import {selectRestaurantById} from "../../redux/entities/restaurant/slice.js";
 export const RestaurantMenuTab = () => {
     const {restaurantId} = useParams();
     const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId))
-    let addButton = false
 
-    return <RestaurantMenu restaurant={restaurant} allMenu={addButton}/>
+    return <RestaurantMenu restaurant={restaurant} allMenu={false}/>
 }

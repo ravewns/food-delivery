@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import styles from "../restaurant-tabs/restaurant-tabs.module.css";
 import {useSelector} from "react-redux";
 import {selectRestaurantById} from "../../redux/entities/restaurant/slice.js";
@@ -9,7 +8,7 @@ export const RestaurantTab = ({restaurantId}) => {
     return (
         <>
             <div key={restaurant.id} className="restaurant">
-                <Link to={restaurant.id} className={clsx(styles.restaurantName)}>
+                <Link to={restaurant.id} className={styles.restaurantName}>
                     {restaurant.name}
                 </Link>
             </div>

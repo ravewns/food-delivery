@@ -3,11 +3,10 @@ import {Dish} from "../restaurant-dish/restaurant-dish.jsx";
 
 export const DishElement = () => {
     const {dishId} = useParams();
-    let addButton = true
 
     return (
         <div className="container">
-            <Dish dishId={dishId} addButton={addButton}/>
+            <Dish dishId={dishId} addButton={true}/>
         </div>
     )
 }
