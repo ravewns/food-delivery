@@ -9,13 +9,14 @@ import {Link} from "react-router";
 export const Dish = ({dishId, addButton}) => {
     const {state} = useContext(AuthContext);
     const dish = useSelector((state) => selectDishById(state, dishId))
+
     return (
         <>
             <ul className={styles.restaurantMenu}>
-                    <Link to={'/dish/' + dishId} className={styles.restaurantDish}>
-                        {dish.name}
-                        {state.isAuth && addButton && <MenuCounter restaurantId={dishId}/>}
-                    </Link>
+                <Link to={'/dish/' + dishId} className={styles.restaurantDish}>
+                    {dish.name}
+                    {state.isAuth && addButton && <MenuCounter restaurantId={dishId}/>}
+                </Link>
             </ul>
         </>
     )
