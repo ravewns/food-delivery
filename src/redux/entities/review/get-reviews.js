@@ -3,10 +3,10 @@ import {selectRequestStatus, selectReviewIds} from "./slice.js";
 
 export const getReviews = createAsyncThunk(
     'review/getReviews',
-    async (_, {
+    async (restaurantId, {
         rejectWithValue,
     }) => {
-        const response = await fetch('http://localhost:3001/api/reviews?restaurantId=' + _);
+        const response = await fetch('http://localhost:3001/api/reviews?restaurantId=' + restaurantId);
         const result = await response.json();
 
         if (!result.length) {

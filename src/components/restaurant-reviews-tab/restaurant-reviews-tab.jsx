@@ -6,7 +6,6 @@ import {AuthContext} from "../auth-context/index.jsx";
 
 export const RestaurantReviewsTab = () => {
     const {state} = useContext(AuthContext);
-
     const {restaurantId} = useParams();
 
     return (

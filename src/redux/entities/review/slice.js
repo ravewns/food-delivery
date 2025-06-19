@@ -1,5 +1,4 @@
 import {createEntityAdapter, createSlice} from "@reduxjs/toolkit";
-import {dishSlice} from "../dish/slice.js";
 import {getReviews} from "./get-reviews.js";
 
 const entityAdapter = createEntityAdapter();
@@ -16,11 +15,11 @@ export const reviewSlice = createSlice({
         })
 });
 
-const selectReviewsSlice = (state) => state[dishSlice.name];
+const selectReviewsSlice = (state) => state[reviewSlice.name];
 
 export const {
     selectIds: selectReviewIds,
     selectById: selectReviewById,
 } = entityAdapter.getSelectors(selectReviewsSlice)
 
-export const {selectRequestStatus} = dishSlice.selectors;
+export const {selectRequestStatus} = reviewSlice.selectors;
