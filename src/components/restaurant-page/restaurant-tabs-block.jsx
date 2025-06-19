@@ -6,7 +6,7 @@ import {getRestaurants} from "../../redux/entities/restaurants/get-restaurants.j
 import {useRequest} from "../../redux/hooks/use-request.js";
 import {RequestBoundary} from "../request-boundary/request-boundary.jsx";
 
-export const RestaurantPage = () => {
+export const RestaurantTabsBlock = () => {
     const restaurantsIds = useSelector(selectRestaurantIds);
     const {restaurantId} = useParams();
 

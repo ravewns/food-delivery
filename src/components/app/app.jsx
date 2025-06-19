@@ -1,5 +1,5 @@
 import {Layout} from "../layout/layout";
-import {RestaurantPage} from "../restaurant-page/restaurant-page";
+import {RestaurantTabsBlock} from "../restaurant-page/restaurant-tabs-block.jsx";
 import {ThemeContextProvider} from "../theme-context/theme-context-provider.jsx";
 import {AuthContextProvider} from "../auth-context/auth-context-provider.jsx";
 import '../../global.css';
@@ -21,7 +21,7 @@ export const App = () => {
                         <Routes>
                             <Route element={<Layout/>}>
                                 <Route path="/" element={<RestaurantHome/>}/>
-                                <Route path="restaurants" element={<RestaurantPage/>}>
+                                <Route path="restaurants" element={<RestaurantTabsBlock/>}>
                                     <Route path=":restaurantId" element={<RestaurantInfo/>}>
                                         <Route index element={<Navigate to="menu" replace/>}/>
                                         <Route path="menu" element={<RestaurantMenuTab/>}/>

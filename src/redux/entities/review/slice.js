@@ -12,7 +12,7 @@ export const reviewSlice = createSlice({
     },
     extraReducers: (builder) => builder
         .addCase(getReviews.fulfilled, (state, {payload}) => {
-            entityAdapter.setAll(state, payload);
+            entityAdapter.setMany(state, payload);
         })
 });
 

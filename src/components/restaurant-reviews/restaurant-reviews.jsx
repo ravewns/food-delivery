@@ -8,7 +8,6 @@ import {RequestBoundary} from "../request-boundary/request-boundary.jsx";
 
 export const RestaurantReviews = ({restaurantId}) => {
     const reviews = useSelector(selectReviewIds)
-
     const requestStatus = useRequest(getReviews, restaurantId);
 
     return (
