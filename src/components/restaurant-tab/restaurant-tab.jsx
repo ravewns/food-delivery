@@ -1,6 +1,6 @@
 import styles from "../restaurant-tabs/restaurant-tabs.module.css";
 import {useSelector} from "react-redux";
-import {selectRestaurantById} from "../../redux/entities/restaurant/slice.js";
+import {selectRestaurantById} from "../../redux/entities/restaurants/slice.js";
 import {Link} from "react-router";
 
 export const RestaurantTab = ({restaurantId}) => {

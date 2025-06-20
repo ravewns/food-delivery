@@ -1,17 +1,17 @@
 import {useParams} from "react-router";
-import {useSelector} from "react-redux";
-import {selectRestaurantById} from "../../redux/entities/restaurant/slice.js";
 import {RestaurantReviews} from "../restaurant-reviews/restaurant-reviews.jsx";
 import {ReviewForm} from "../review-form/review-form.jsx";
+import {useContext} from "react";
+import {AuthContext} from "../auth-context/index.jsx";
 
 export const RestaurantReviewsTab = () => {
+    const {state} = useContext(AuthContext);
     const {restaurantId} = useParams();
-    const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId))
 
     return (
         <div className="container">
-            <RestaurantReviews restaurant={restaurant}/>
-            <ReviewForm/>
+            <RestaurantReviews restaurantId={restaurantId}/>
+            {state.isAuth && <ReviewForm/>}
         </div>
     )
 }
