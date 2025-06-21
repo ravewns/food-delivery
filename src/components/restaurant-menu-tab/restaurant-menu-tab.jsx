@@ -3,5 +3,6 @@ import {useParams} from "react-router";
 
 export const RestaurantMenuTab = () => {
     const {restaurantId} = useParams();
+
     return <RestaurantMenu restaurantId={restaurantId} allMenu={false}/>
 }

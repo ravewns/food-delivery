@@ -1,18 +1,26 @@
 import {NavLink, Outlet, useParams} from "react-router";
 import styles from "./restaurant-info.module.css"
-import {useSelector} from "react-redux";
-import {selectRestaurantById} from "../../redux/entities/restaurants/slice.js";
-import {useRequest} from "../../redux/hooks/use-request.js";
-import {getRestaurant} from "../../redux/entities/restaurants/get-restaurant.js";
-import {RequestBoundary} from "../request-boundary/request-boundary.jsx";
+import {useGetRestaurantsQuery} from "../../redux/api/index.js";
 
 export const RestaurantInfo = () => {
     const {restaurantId} = useParams();
-    const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId))
 
-    const requestStatus = useRequest(getRestaurant, restaurantId)
+    const {data: restaurant, isLoading, isError} = useGetRestaurantsQuery(undefined, {
+        selectFromResult: (result) => ({
+            ...result,
+            data: result.data.find(({id}) => id === restaurantId),
+        }),
+    })
 
-    return (<RequestBoundary status={requestStatus}>
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
+    if (isError) {
+        return <div>Error: {isError.message}</div>
+    }
+
+    return (
         <div>
             <h1 className={styles.title}>{restaurant.name}</h1>
             <div className={styles.tabs}>
@@ -25,5 +33,5 @@ export const RestaurantInfo = () => {
                 <Outlet/>
             </div>
         </div>
-    </RequestBoundary>)
+    )
 }

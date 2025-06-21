@@ -1,25 +1,40 @@
-import styles from './restaurant-review.module.css'
-import {Review} from "../restaurant-review/restaurant-review.jsx";
-import {useRequest} from "../../redux/hooks/use-request.js";
-import {getReviews} from "../../redux/entities/review/get-reviews.js";
-import {RequestBoundary} from "../request-boundary/request-boundary.jsx";
-import {useSelector} from "react-redux";
-import {selectRestaurantById} from "../../redux/entities/restaurants/slice.js";
+import {useParams} from "react-router";
+import {ReviewForm} from "../review-form/review-form.jsx";
+import {useContext} from "react";
+import {AuthContext} from "../auth-context/index.jsx";
+import styles from ".//restaurant-review.module.css";
+import {useAddReviewMutation, useGetRestaurantReviewsQuery} from "../../redux/api/index.js";
 
-export const RestaurantReviews = ({restaurantId}) => {
-    const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId))
-    const requestStatus = useRequest(getReviews, restaurantId);
+export const RestaurantReviews = () => {
+    const {restaurantId} = useParams();
+    const {state} = useContext(AuthContext);
+    const {data: reviews, isLoading, isError} = useGetRestaurantReviewsQuery(restaurantId);
+
+    const [addReviewMutation] = useAddReviewMutation();
+    const handleAddReview = (review) => {
+        addReviewMutation({restaurantId, review: {...review, user: "c3d4abd4-c3ef-46e1-8719-eb17db1d6e99"}})
+    }
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+    if (isError) {
+        return <div>Error</div>
+    }
 
     return (
-        <RequestBoundary status={requestStatus}>
+        <div className="container">
             <div>
                 <h3 className={styles.restaurantTitle}>Отзывы</h3>
-                <ul className={styles.restaurantReviews}>
-                    {restaurant.reviews.map((review) => (
-                        <Review key={review} reviewId={review}/>
+                <ul>
+                    {reviews.map(({id, text}) => (
+                        <li key={id} className={styles.restaurantReview}>
+                            {text}
+                        </li>
                     ))}
                 </ul>
             </div>
-        </RequestBoundary>
-    );
-};
+            {state.isAuth && <ReviewForm onSubmitForm={handleAddReview} />}
+        </div>
+    )
+}
