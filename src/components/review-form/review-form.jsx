@@ -4,7 +4,7 @@ import {Button} from "../button/button.jsx";
 import {Input} from "../input/input.jsx";
 import styles from "./review-form.module.css";
 
-export const ReviewForm = () => {
+export const ReviewForm = ({onSubmitForm}) => {
     const {form, onNameChange, onTextChange, clear, incrementRating, decrementRating} = useForm()
 
     const {name, text, rating} = form
@@ -27,8 +27,8 @@ export const ReviewForm = () => {
                 <label className={styles.reviewFormName}>Рейтинг</label>
             </div>
             <Counter value={rating} decrement={decrementRating} increment={incrementRating}/>
-            <Button className={styles.reviewFormButton} onClick={clear}>Сбросить
-            </Button>
+            <Button className={styles.reviewFormButton} onClick={clear}>Сбросить</Button>
+            <Button className={styles.reviewFormButton} title='Submit' onClick={() => onSubmitForm(form)}>Отправить</Button>
         </form>
     )
 }

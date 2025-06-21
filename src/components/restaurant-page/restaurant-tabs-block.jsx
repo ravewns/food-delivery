@@ -1,25 +1,29 @@
-import {RestaurantTabs} from "../restaurant-tabs/restaurant-tabs";
-import {selectRestaurantIds} from "../../redux/entities/restaurants/slice.js";
-import {useSelector} from "react-redux";
-import {Outlet, useParams} from "react-router";
-import {getRestaurants} from "../../redux/entities/restaurants/get-restaurants.js";
-import {useRequest} from "../../redux/hooks/use-request.js";
-import {RequestBoundary} from "../request-boundary/request-boundary.jsx";
+import {Link, Outlet} from "react-router";
+import {useGetRestaurantsQuery} from "../../redux/api/index.js";
+import styles from "../restaurant-tabs/restaurant-tabs.module.css";
+import clsx from "clsx";
 
 export const RestaurantTabsBlock = () => {
-    const restaurantsIds = useSelector(selectRestaurantIds);
-    const {restaurantId} = useParams();
+    const {data, isLoading, isError} = useGetRestaurantsQuery();
 
-    const requestStatus = useRequest(getRestaurants)
+    if (isLoading) return <div>Загрузка...</div>;
+    if (isError) return <div>Ошибка: {isError.message}</div>;
 
     return (
-        <RequestBoundary status={requestStatus}>
-            <div>
-                {restaurantId === undefined &&
-                    <RestaurantTabs restaurantsIds={restaurantsIds} restaurantId={restaurantId}/>}
-                <Outlet/>
+        <div>
+            <div className={clsx(styles.restaurantsList)}>
+                {data.map(({id, name}) => {
+                    return (
+                        <div key={id} className="restaurant">
+                            <Link to={id} className={styles.restaurantName}>
+                                {name}
+                            </Link>
+                        </div>
+                    );
+                })}
             </div>
-        </RequestBoundary>
+            <Outlet/>
+        </div>
     )
 };
 

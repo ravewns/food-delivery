@@ -1,25 +1,30 @@
-import {useParams} from "react-router";
-import {Dish} from "../restaurant-dish/restaurant-dish.jsx";
-import {useRequest} from "../../redux/hooks/use-request.js";
-import {getDish} from "../../redux/entities/dish/get-dish.js";
+import {Link, useParams} from "react-router";
+import {useGetRestaurantDishByIdQuery} from "../../redux/api/index.js";
+import styles from "../restaurant-menu/restaurant-menu.module.css";
+import {MenuCounter} from "../restaurant-menu/menu-counter/menu-counter.jsx";
+import {useContext} from "react";
+import {AuthContext} from "../auth-context/index.jsx";
 
 export const DishElement = () => {
     const {dishId} = useParams();
+    const {state} = useContext(AuthContext);
+    const {data: dish, isLoading, isError} = useGetRestaurantDishByIdQuery(dishId)
 
-    const requestStatus = useRequest(getDish, dishId);
-
-
-    if (requestStatus === "rejected") {
-        return <div>Ошибка получения блюда</div>
-    }
-
-    if (requestStatus === "pending" || requestStatus === "idle" || !dishId) {
+    if (isLoading) {
         return <div>Loading...</div>
+    }
+    if (isError) {
+        return <div>Ошибка получения блюда</div>
     }
 
     return (
         <div className="container">
-            <Dish dishId={dishId} addButton={true}/>
+            <ul key={dish.id} className={styles.restaurantMenu}>
+                <Link to={'/dish/' + dish.id} className={styles.restaurantDish}>
+                    {dish.name}
+                    {state.isAuth && <MenuCounter dishId={dish.id}/>}
+                </Link>
+            </ul>
         </div>
     )
 }

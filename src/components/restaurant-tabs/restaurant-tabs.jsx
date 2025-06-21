@@ -1,16 +1,17 @@
 import styles from "./restaurant-tabs.module.css";
 import clsx from "clsx";
-import {RestaurantTab} from "../restaurant-tab/restaurant-tab.jsx";
+import {Link} from "react-router";
 
-export const RestaurantTabs = ({restaurantsIds, onSelect}) => {
+export const RestaurantTabs = ({data}) => {
     return (
         <div className={clsx(styles.restaurantsList)}>
-            {restaurantsIds.map((restaurantId) => {
-                if (!restaurantsIds.length) {
-                    return null;
-                }
+            {data.map(({id, name}) => {
                 return (
-                    <RestaurantTab key={restaurantId} restaurantId={restaurantId} onSelect={onSelect}/>
+                    <div key={id} className="restaurant">
+                        <Link to={id} className={styles.restaurantName}>
+                            {name}
+                        </Link>
+                    </div>
                 );
             })}
         </div>
