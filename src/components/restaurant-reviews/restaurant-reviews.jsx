@@ -12,7 +12,7 @@ export const RestaurantReviews = () => {
 
     const [addReviewMutation] = useAddReviewMutation();
     const handleAddReview = (review) => {
-        addReviewMutation({restaurantId, review: {...review, user: "c3d4abd4-c3ef-46e1-8719-eb17db1d6e99"}})
+        addReviewMutation({restaurantId, review: {...review, user: state.user}})
     }
 
     if (isLoading) {
