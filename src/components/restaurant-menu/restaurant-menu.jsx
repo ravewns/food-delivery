@@ -16,16 +16,16 @@ export const RestaurantMenu = ({restaurantId, addButton}) => {
 
     return (
         <div>
-            {data.map(({id, name}) => {
-                return (
-                    <ul key={id} className={styles.restaurantMenu}>
-                        <Link to={'/dish/' + id} className={styles.restaurantDish}>
+            <ul className={styles.restaurantMenu}>
+                {data.map(({id, name}) => {
+                    return (
+                        <Link key={id} to={'/dish/' + id} className={styles.restaurantDish}>
                             {name}
                             {state.isAuth && addButton && <MenuCounter restaurantId={id}/>}
                         </Link>
-                    </ul>
-                )
-            })}
+                    )
+                })}
+            < /ul>
         </div>
     );
 };

@@ -7,7 +7,7 @@ export const RestaurantTabs = ({data}) => {
         <div className={clsx(styles.restaurantsList)}>
             {data.map(({id, name}) => {
                 return (
-                    <div key={id} className="restaurant">
+                    <div key={id}>
                         <Link to={id} className={styles.restaurantName}>
                             {name}
                         </Link>
