@@ -1,7 +1,8 @@
+"use client";
+import RestaurantHome from "../components/restaurant-home/restaurant-home";
+
 const Page = () => {
-    return (
-        <div>Home Page</div>
-    )
-}
+  return <RestaurantHome />;
+};
 
 export default Page;

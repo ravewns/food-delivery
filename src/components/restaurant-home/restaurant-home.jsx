@@ -1,12 +1,16 @@
-import {Link} from "react-router";
+"use client";
+
+import Link from "next/link";
 import styles from "./restaurant-home.module.css";
 
 export const RestaurantHome = () => {
-    return (
-        <div className="container">
-            <Link to={'/restaurants'} className={styles.title}>
-                Рестораны
-            </Link>
-        </div>
-    )
-}
+  return (
+    <div className="container">
+      <Link href="/restaurants" className={styles.title}>
+        Рестораны
+      </Link>
+    </div>
+  );
+};
+
+export default RestaurantHome;

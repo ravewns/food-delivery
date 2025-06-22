@@ -2,4 +2,4 @@
 
 import dynamic from "next/dynamic";
 
-export const ClientOnlyApp = dynamic(() => import('../../components/app/app'), {ssr: false});
+export const ClientOnlyApp = dynamic(() => import('../components/app/app.jsx'), {ssr: false});
