@@ -1,19 +1,31 @@
 import styles from "./restaurant-menu.module.css";
-import {useSelector} from "react-redux";
-import {useRequest} from "../../redux/hooks/use-request.js";
-import {getDishesByRestaurantId} from "../../redux/entities/dish/get-dishes.js";
-import {Dish} from "../restaurant-dish/restaurant-dish.jsx";
-import {RequestBoundary} from "../request-boundary/request-boundary.jsx";
-import {selectRestaurantById} from "../../redux/entities/restaurants/slice.js";
+import {Link} from "react-router";
+import {MenuCounter} from "./menu-counter/menu-counter.jsx";
+import {initialState as state} from "../auth-context/auth-reducer.js";
+import {useGetRestaurantDishesQuery} from "../../redux/api/index.js";
 
 export const RestaurantMenu = ({restaurantId, addButton}) => {
-    const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId))
-    const requestStatus = useRequest(getDishesByRestaurantId, restaurantId);
+    const {data, isLoading, isError} = useGetRestaurantDishesQuery(restaurantId);
 
-    return (<RequestBoundary status={requestStatus}>
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+    if (isError) {
+        return <div>Error: {isError.message}</div>
+    }
+
+    return (
         <div>
-            <h3 className={styles.restaurantTitle}>Меню</h3>
-            {restaurant.menu.map((dish) => (<Dish key={dish} dishId={dish} allMenu={addButton}/>))}
+            <ul className={styles.restaurantMenu}>
+                {data.map(({id, name}) => {
+                    return (
+                        <Link key={id} to={'/dish/' + id} className={styles.restaurantDish}>
+                            {name}
+                            {state.isAuth && addButton && <MenuCounter restaurantId={id}/>}
+                        </Link>
+                    )
+                })}
+            < /ul>
         </div>
-    </RequestBoundary>);
+    );
 };
