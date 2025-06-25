@@ -4,4 +4,4 @@ const Page = () => {
   return <RestaurantMenuTab />;
 };
 
-export default Page;
+export default RestaurantMenuTab;

@@ -4,4 +4,4 @@ const Page = () => {
   return <DishElement />;
 };
 
-export default Page;
+export default DishElement;
