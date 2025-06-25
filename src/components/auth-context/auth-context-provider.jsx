@@ -1,20 +1,21 @@
-import {useReducer} from "react";
-import {AuthContext} from "./index.jsx";
-import {initialState, reducer} from "./auth-reducer.js";
+"use client";
 
-export const AuthContextProvider = ({children}) => {
+import { useReducer } from "react";
+import { AuthContext } from "./index.jsx";
+import { initialState, reducer } from "./auth-reducer.js";
 
-    const [state, dispatch] = useReducer(reducer, initialState);
+export const AuthContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-    const login = (name) => {
-        dispatch({type: 'SET_AUTH', payload: true});
-        dispatch({type: 'SET_NAME', payload: name});
-    };
+  const login = (name) => {
+    dispatch({ type: "SET_AUTH", payload: true });
+    dispatch({ type: "SET_NAME", payload: name });
+  };
 
-    const logout = () => {
-        dispatch({type: 'SET_AUTH', payload: false});
-        dispatch({type: 'SET_NAME', payload: null});
-    };
+  const logout = () => {
+    dispatch({ type: "SET_AUTH", payload: false });
+    dispatch({ type: "SET_NAME", payload: null });
+  };
 
-    return <AuthContext value={{state, dispatch, login, logout}}>{children}</AuthContext>
-}
+  return <AuthContext value={{ state, dispatch, login, logout }}>{children}</AuthContext>;
+};

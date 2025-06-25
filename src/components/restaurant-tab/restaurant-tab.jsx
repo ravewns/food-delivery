@@ -1,17 +1,19 @@
-import styles from "../restaurant-tabs/restaurant-tabs.module.css";
-import {useSelector} from "react-redux";
-import {selectRestaurantById} from "../../redux/entities/restaurants/slice.js";
-import {Link} from "react-router";
+"use client";
 
-export const RestaurantTab = ({restaurantId}) => {
-    const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId))
-    return (
-        <>
-            <div key={restaurant.id} className="restaurant">
-                <Link to={restaurant.id} className={styles.restaurantName}>
-                    {restaurant.name}
-                </Link>
-            </div>
-        </>
-    )
-}
+import styles from "../restaurant-tabs/restaurant-tabs.module.css";
+import { useSelector } from "react-redux";
+import { selectRestaurantById } from "../../redux/entities/restaurants/slice.js";
+import { Link } from "react-router";
+
+export const RestaurantTab = ({ restaurantId }) => {
+  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId));
+  return (
+    <>
+      <div key={restaurant.id} className="restaurant">
+        <Link to={restaurant.id} className={styles.restaurantName}>
+          {restaurant.name}
+        </Link>
+      </div>
+    </>
+  );
+};
